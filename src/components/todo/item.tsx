@@ -1,12 +1,28 @@
+import { Todo, useTodosDispatch } from '~contexts/todo';
+
+
 export type TodoItemProps = {
-  todo: {
-    id: number;
-    text: string;
-    isDone: boolean;
-  }
+  todo: Todo;
+
+  /** Conext API 적용 이전 */
+  // todo: {
+  //   id: number;
+  //   text: string;
+  //   isDone: boolean;
+  // }
 }
 
 const TodoItem = ({ todo }: TodoItemProps) => {
+  const dispatch = useTodosDispatch();
+
+  const onToggle = (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    dispatch({ type: 'TOGGLE', id: todo.id });
+  }
+
+  const onRemove = (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    dispatch({ type: 'REMOVE', id: todo.id });
+  }
+
   return (
     <li className={`todo-item ${todo.isDone ? 'done' : ''}`}>
       <style jsx>{`
@@ -23,8 +39,17 @@ const TodoItem = ({ todo }: TodoItemProps) => {
         }
       `}</style>
 
-      <span className="text">{todo.text}</span>
-      <span className="remove">[X]</span>
+      <span
+        className="text"
+        onClick={onToggle}>
+        {todo.id} : {todo.text}
+      </span>
+
+      <span
+        className="remove"
+        onClick={onRemove}>
+        [X]
+        </span>
     </li>
   )
 }

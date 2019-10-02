@@ -1,1 +1,3 @@
-hello-next-in-typescript
+# hello-next-in-typescript
+
+next.js + typeScript

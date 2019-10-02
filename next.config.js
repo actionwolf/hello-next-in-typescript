@@ -1,6 +1,6 @@
-const withPlugins = require('next-compose-plugins');
-const withTypescript = require('@zeit/next-typescript');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const withPlugins = require("next-compose-plugins");
+const withTypescript = require("@zeit/next-typescript");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 // module.exports = {
 //   webpack: (config, { dev }) => {
@@ -19,5 +19,5 @@ module.exports = {
     config.resolve.plugins = [new TsconfigPathsPlugin()];
 
     return config;
-  },
+  }
 };

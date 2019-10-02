@@ -23,7 +23,7 @@ const TodosDispatchContext = createContext<TodosDispatch | undefined>(undefined)
 function todoReducer(state: Todo[], action: Action): Todo[] {
   switch (action.type) {
     case 'CREATE':
-      const nextId = Math.max(...state.map(todo => todo.id)) + 1;
+      const nextId = Math.max(0, ...state.map(todo => todo.id)) + 1;
 
       return state.concat({
         id: nextId,
@@ -51,17 +51,17 @@ export const TodosContextProvider = ({ children }: { children: React.ReactNode }
   const [todos, dispatch] = useReducer(todoReducer, [
     {
       id: 100,
-      text: 'TEXT - 100',
+      text: 'TEXT',
       isDone: false
     },
     {
       id: 101,
-      text: 'TEXT - 101',
+      text: 'TEXT',
       isDone: true
     },
     {
       id: 102,
-      text: 'TEXT - 102',
+      text: 'TEXT',
       isDone: false
     }
   ]);
